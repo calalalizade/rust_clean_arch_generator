@@ -23,6 +23,8 @@ toml = "0.8.14"
 name = "my_template" # Use the exact name you want for the command
 path = "src/main.rs"
 
+include = ["template_config.toml"] 
+
 [package.metadata.cargo-add-assets]
 templates = ["templates/*"]
 "template_config.toml" = ["template_config.toml"]
