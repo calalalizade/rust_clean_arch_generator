@@ -28,10 +28,13 @@ fn generate_feature(feature_name: &str) {
     // let feature_name = std::env::args().nth(1).expect("Feature name argument required");
 
     // 2. Template Registration
+    let config_dir = dirs::config_dir().unwrap_or_else(|| env::current_dir().unwrap());
+    let config_path = config_dir.join("template_config.toml");
+
     let config: toml::Value = toml
         ::from_str(
             &fs
-                ::read_to_string("template_config.toml")
+                ::read_to_string(config_path) // Use the determined path
                 .expect("Unable to read template configuration file")
         )
         .expect("Invalid configuration format");
