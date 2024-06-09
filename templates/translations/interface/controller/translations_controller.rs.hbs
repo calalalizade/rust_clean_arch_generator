@@ -1,0 +1,18 @@
+use crate::common::application::model::{ json_response::JsonResponse, unit_response::UnitResponse };
+use rocket::serde::json::Json;
+
+// #[post("/sign_up", format = "json", data = "<request>")]
+// fn sign_up(
+//     request: Json<SignupRequestModel>
+// ) -> Result<JsonResponse<TokenResponseModel>, UnitResponse> {
+//     let response = auth_use_case::sign_up(request.into_inner());
+//     match response {
+//         Ok(data) => Ok(JsonResponse::success(data, None)),
+//         Err(err) => Err(err),
+//     }
+// }
+
+
+pub fn {{feature_name}}_routes() -> Vec<rocket::Route> {
+    routes![]
+}

@@ -1,0 +1,18 @@
+use crate::features::{{feature_name}}::{
+    application::interactor::i_{{snake_case_feature_name}}_interactor::I{{capitalize_feature_name}}Interactor,
+    domain::interactor::{{snake_case_feature_name}}_interactor_impl::{{capitalize_feature_name}}InteractorImpl,
+    infrastructure::{
+        data_access::{{snake_case_feature_name}}_data_source::{{capitalize_feature_name}}DataSource,
+        repository::{{snake_case_feature_name}}_repository_impl::{{capitalize_feature_name}}RepositoryImpl,
+    },
+};
+
+pub struct {{capitalize_feature_name}}Container;
+
+impl {{capitalize_feature_name}}Container {
+    pub fn interactor() -> Box<dyn I{{capitalize_feature_name}}Interactor> {
+        let data_source = Box::new({{capitalize_feature_name}}DataSource::new());
+        let repository = Box::new({{capitalize_feature_name}}RepositoryImpl::new(data_source));
+        Box::new({{capitalize_feature_name}}InteractorImpl::new(repository))
+    }
+}
