@@ -1,0 +1,15 @@
+use crate::common::application::{
+        model::unit_response::UnitResponse,
+        util::failure_to_unit_response_converter::failure_to_unit_response_converter,
+    };
+
+// pub fn sign_up(signup_request: SignupRequestModel) -> Result<TokenResponseModel, UnitResponse> {
+//     let interactor = UserAuthContainer::interactor();
+
+//     let result = interactor.sign_up(signup_request_to_entity_mapper(signup_request));
+
+//     match result {
+//         Ok(data) => Ok(token_entity_to_model_mapper(data)),
+//         Err(err) => Err(failure_to_unit_response_converter(err)),
+//     }
+// }

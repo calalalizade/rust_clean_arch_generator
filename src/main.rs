@@ -5,6 +5,12 @@ use std::{ env, fs, path::Path };
 use serde_json::json;
 use std::collections::HashMap;
 
+#[macro_use]
+extern crate include_dir;
+use include_dir::{ include_dir, Dir };
+
+const TEMPLATES_DIR: Dir = include_dir!("./template");
+
 fn main() {
     // Parse arguments (e.g., "my_template generate my_feature")
     let mut args = env::args();
@@ -34,65 +40,15 @@ fn generate_feature(feature_name: &str) {
 
     let mut handlebars = Handlebars::new();
     // Register all templates from the config file
-    handlebars
-        .register_template_string("container", include_str!("../templates/container.rs.hbs"))
-        .expect("Failed to register container template"); // Use .expect()
-    handlebars
-        .register_template_string(
-            "i_interactor",
-            include_str!(
-                "../templates/translations/application/interactor/i_translations_interactor.rs.hbs"
-            )
-        )
-        .expect("Failed to register i_interactor template"); // Use .expect()
-    handlebars
-        .register_template_string(
-            "use_case",
-            include_str!(
-                "../templates/translations/application/use_case/translations_use_case.rs.hbs"
-            )
-        )
-        .expect("Failed to register use_case template"); // Use .expect()
-    handlebars
-        .register_template_string(
-            "i_repository",
-            include_str!(
-                "../templates/translations/domain/repository/i_translations_repository.rs.hbs"
-            )
-        )
-        .expect("Failed to register i_repository template"); // Use .expect()
-    handlebars
-        .register_template_string(
-            "interactor_impl",
-            include_str!(
-                "../templates/translations/domain/interactor/translations_interactor_impl.rs.hbs"
-            )
-        )
-        .expect("Failed to register interactor_impl template"); // Use .expect()
-    handlebars
-        .register_template_string(
-            "data_source",
-            include_str!(
-                "../templates/translations/infrastructure/data_access/translations_data_source.rs.hbs"
-            )
-        )
-        .expect("Failed to register data_source template"); // Use .expect()
-    handlebars
-        .register_template_string(
-            "repository_impl",
-            include_str!(
-                "../templates/translations/infrastructure/repository/translations_repository_impl.rs.hbs"
-            )
-        )
-        .expect("Failed to register repository_impl template"); // Use .expect()
-    handlebars
-        .register_template_string(
-            "controller",
-            include_str!(
-                "../templates/translations/interface/controller/translations_controller.rs.hbs"
-            )
-        )
-        .expect("Failed to register controller template");
+    for file in TEMPLATES_DIR.files() {
+        // Iterate over files in the directory
+        let name = file.path().file_stem().unwrap().to_str().unwrap();
+        let template_string = file.contents_utf8().unwrap();
+
+        handlebars
+            .register_template_string(name, template_string)
+            .expect(&format!("Failed to register template: {}", name));
+    }
 
     // 3. Data Preparation
     let data =
