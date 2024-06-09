@@ -32,11 +32,7 @@ fn generate_feature(feature_name: &str) {
     let config_path = config_dir.join("template_config.toml");
 
     let config: toml::Value = toml
-        ::from_str(
-            &fs
-                ::read_to_string(config_path) // Use the determined path
-                .expect("Unable to read template configuration file")
-        )
+        ::from_str(include_str!("../template_config.toml"))
         .expect("Invalid configuration format");
 
     let mut handlebars = Handlebars::new();
