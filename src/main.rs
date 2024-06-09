@@ -30,19 +30,14 @@ fn main() {
 }
 
 fn generate_feature(feature_name: &str) {
-    // 1. Input Handling
-    // let feature_name = std::env::args().nth(1).expect("Feature name argument required");
-
-    // 2. Template Registration
-    // let config: toml::Value = toml
-    //     ::from_str(include_str!("../template_config.toml"))
-    //     .expect("Invalid configuration format");
-
+    // 2. Handlebars Setup
     let mut handlebars = Handlebars::new();
-    // Register all templates from the config file
+
+    // 3. Register all templates from the config file
     for file in TEMPLATES_DIR.files() {
         // Iterate over files in the directory
         let name = file.path().file_stem().unwrap().to_str().unwrap();
+        println!("Registering template: {}", name);
         let template_string = file.contents_utf8().unwrap();
 
         handlebars
@@ -133,20 +128,24 @@ fn generate_feature(feature_name: &str) {
 
     // 5. Template Rendering
     // Application Layer
-    let output_container = handlebars.render("container", &data).expect("Render error");
-    let output_interactor = handlebars.render("i_interactor", &data).expect("Render error");
-    let output_use_case = handlebars.render("use_case", &data).expect("Render error");
+    let output_container = handlebars.render("container.rs", &data).expect("Render error");
+    let output_interactor = handlebars.render("i_interactor.rs", &data).expect("Render error");
+    let output_use_case = handlebars.render("use_case.rs", &data).expect("Render error");
 
     // Domain Layer
-    let output_repository = handlebars.render("i_repository", &data).expect("Render error");
-    let output_interactor_impl = handlebars.render("interactor_impl", &data).expect("Render error");
+    let output_repository = handlebars.render("i_repository.rs", &data).expect("Render error");
+    let output_interactor_impl = handlebars
+        .render("interactor_impl.rs", &data)
+        .expect("Render error");
 
     // Infrastructure Layer
-    let output_data_source = handlebars.render("data_source", &data).expect("Render error");
-    let output_repository_impl = handlebars.render("repository_impl", &data).expect("Render error");
+    let output_data_source = handlebars.render("data_source.rs", &data).expect("Render error");
+    let output_repository_impl = handlebars
+        .render("repository_impl.rs", &data)
+        .expect("Render error");
 
     // Interface Layer
-    let output_controller = handlebars.render("controller", &data).expect("Render error");
+    let output_controller = handlebars.render("controller.rs", &data).expect("Render error");
 
     // 6. File Output (adjusted to include subfolders)
     // Application layer
