@@ -1,6 +1,6 @@
 [package]
 name = "template_generator"
-version = "0.1.5"
+version = "0.1.6"
 authors = ["Jalalus"] 
 edition = "2021"
 description = "A Rust CLI tool for generating Clean Architecture project boilerplates."
@@ -19,7 +19,7 @@ serde_json = "1.0.117"
 toml = "0.8.14"
 
 [[bin]]
-name = "my_template" 
+name = "rustlay" 
 path = "src/main.rs"
 
 include = ["template_config.toml"] 

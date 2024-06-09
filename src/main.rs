@@ -12,7 +12,7 @@ use include_dir::{ include_dir, Dir };
 const TEMPLATES_DIR: Dir = include_dir!("./template");
 
 fn main() {
-    // Parse arguments (e.g., "my_template generate my_feature")
+    // Parse arguments (e.g., "rustlay generate my_feature")
     let mut args = env::args();
     let _ = args.next(); // Skip the program name
 
