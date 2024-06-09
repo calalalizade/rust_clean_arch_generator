@@ -6,8 +6,26 @@ use serde_json::json;
 use std::collections::HashMap;
 
 fn main() {
+    // Parse arguments (e.g., "my_template generate my_feature")
+    let mut args = env::args();
+    let _ = args.next(); // Skip the program name
+
+    let subcommand = args.next().expect("Subcommand required (generate)");
+    match subcommand.as_str() {
+        "generate" => {
+            let feature_name = args.next().expect("Feature name argument required");
+            generate_feature(&feature_name);
+        }
+        _ => {
+            eprintln!("Invalid subcommand: {}", subcommand);
+            std::process::exit(1);
+        }
+    }
+}
+
+fn generate_feature(feature_name: &str) {
     // 1. Input Handling
-    let feature_name = std::env::args().nth(1).expect("Feature name argument required");
+    // let feature_name = std::env::args().nth(1).expect("Feature name argument required");
 
     // 2. Template Registration
     let config: toml::Value = toml

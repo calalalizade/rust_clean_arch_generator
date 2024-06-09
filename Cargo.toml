@@ -1,10 +1,22 @@
 [package]
-name = "rust_template"
+name = "template_generator"
 version = "0.1.0"
+authors = ["Jalalus"] 
 edition = "2021"
+description = "A Rust CLI tool for generating Clean Architecture project boilerplates."
+license = "MIT" # Or your chosen license
+repository = "https://github.com/calalalizade/rust_clean_arch_generator"
+
+categories = ["development-tools", "command-line-utilities"]
+
+keywords = ["rust", "clean-architecture", "boilerplate", "generator"] 
 
 [dependencies]
 handlebars = "5.1.2"
 serde = "1.0.203"
 serde_json = "1.0.117"
 toml = "0.8.14"
+
+[[bin]]
+name = "my_template" # Use the exact name you want for the command
+path = "src/main.rs"

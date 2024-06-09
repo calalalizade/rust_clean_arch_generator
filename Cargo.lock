@@ -186,16 +186,6 @@ dependencies = [
 ]
 
 [[package]]
-name = "rust_template"
-version = "0.1.0"
-dependencies = [
- "handlebars",
- "serde",
- "serde_json",
- "toml",
-]
-
-[[package]]
 name = "ryu"
 version = "1.0.18"
 source = "registry+https://github.com/rust-lang/crates.io-index"
@@ -261,6 +251,16 @@ dependencies = [
  "proc-macro2",
  "quote",
  "unicode-ident",
+]
+
+[[package]]
+name = "template_generator"
+version = "0.1.0"
+dependencies = [
+ "handlebars",
+ "serde",
+ "serde_json",
+ "toml",
 ]
 
 [[package]]
