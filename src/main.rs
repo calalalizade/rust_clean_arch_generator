@@ -28,24 +28,71 @@ fn generate_feature(feature_name: &str) {
     // let feature_name = std::env::args().nth(1).expect("Feature name argument required");
 
     // 2. Template Registration
-    let config_dir = dirs::config_dir().unwrap_or_else(|| env::current_dir().unwrap());
-    let config_path = config_dir.join("template_config.toml");
-
-    let config: toml::Value = toml
-        ::from_str(include_str!("../template_config.toml"))
-        .expect("Invalid configuration format");
+    // let config: toml::Value = toml
+    //     ::from_str(include_str!("../template_config.toml"))
+    //     .expect("Invalid configuration format");
 
     let mut handlebars = Handlebars::new();
-    if let Some(templates) = config.get("templates").and_then(toml::Value::as_table) {
-        for (name, path) in templates {
-            handlebars
-                .register_template_file(
-                    name,
-                    path.as_str().expect("Template path should be a string")
-                )
-                .expect(&format!("Can't find template {}", name));
-        }
-    }
+    // Register all templates from the config file
+    handlebars
+        .register_template_string("container", include_str!("../templates/container.rs.hbs"))
+        .expect("Failed to register container template"); // Use .expect()
+    handlebars
+        .register_template_string(
+            "i_interactor",
+            include_str!(
+                "../templates/translations/application/interactor/i_translations_interactor.rs.hbs"
+            )
+        )
+        .expect("Failed to register i_interactor template"); // Use .expect()
+    handlebars
+        .register_template_string(
+            "use_case",
+            include_str!(
+                "../templates/translations/application/use_case/translations_use_case.rs.hbs"
+            )
+        )
+        .expect("Failed to register use_case template"); // Use .expect()
+    handlebars
+        .register_template_string(
+            "i_repository",
+            include_str!(
+                "../templates/translations/domain/repository/i_translations_repository.rs.hbs"
+            )
+        )
+        .expect("Failed to register i_repository template"); // Use .expect()
+    handlebars
+        .register_template_string(
+            "interactor_impl",
+            include_str!(
+                "../templates/translations/domain/interactor/translations_interactor_impl.rs.hbs"
+            )
+        )
+        .expect("Failed to register interactor_impl template"); // Use .expect()
+    handlebars
+        .register_template_string(
+            "data_source",
+            include_str!(
+                "../templates/translations/infrastructure/data_access/translations_data_source.rs.hbs"
+            )
+        )
+        .expect("Failed to register data_source template"); // Use .expect()
+    handlebars
+        .register_template_string(
+            "repository_impl",
+            include_str!(
+                "../templates/translations/infrastructure/repository/translations_repository_impl.rs.hbs"
+            )
+        )
+        .expect("Failed to register repository_impl template"); // Use .expect()
+    handlebars
+        .register_template_string(
+            "controller",
+            include_str!(
+                "../templates/translations/interface/controller/translations_controller.rs.hbs"
+            )
+        )
+        .expect("Failed to register controller template");
 
     // 3. Data Preparation
     let data =
