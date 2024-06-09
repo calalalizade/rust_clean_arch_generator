@@ -8,34 +8,34 @@ data_source = "./templates/translations/infrastructure/data_access/translations_
 repository_impl = "./templates/translations/infrastructure/repository/translations_repository_impl.rs.hbs"
 controller = "./templates/translations/interface/controller/translations_controller.rs.hbs"
 
-# Folder Names
-application_layer = "application"
-domain_layer = "domain"
-infrastructure_layer = "infrastructure"
-interface_layer = "interface"
+# # Folder Names
+# application_layer = "application"
+# domain_layer = "domain"
+# infrastructure_layer = "infrastructure"
+# interface_layer = "interface"
 
-# Subfolder Names
-application_subfolders = ["di", "interactor", "use_case", "model", "util"]
-domain_subfolders = ["entity", "repository", "interactor"]
-infrastructure_subfolders = ["data_access", "dto", "enum", "mapper", "repository"]
-interface_subfolders = ["controller", "model"]
+# # Subfolder Names
+# application_subfolders = ["di", "interactor", "use_case", "model", "util"]
+# domain_subfolders = ["entity", "repository", "interactor"]
+# infrastructure_subfolders = ["data_access", "dto", "enum", "mapper", "repository"]
+# interface_subfolders = ["controller", "model"]
 
-# Mod.rs Content
-feature_mod_rs_content = "pub mod application;\npub mod domain;\npub mod infrastructure;\npub mod interface;"
-application_mod_rs_content = "pub mod di;\npub mod interactor;\npub mod use_case;\npub mod model;\npub mod util;"
-domain_mod_rs_content = "pub mod entity;\npub mod repository;\npub mod interactor;"
-infrastructure_mod_rs_content = "pub mod data_access;\npub mod dto;\npub mod enum;\npub mod mapper;\npub mod repository;"
-interface_mod_rs_content = "pub mod controller;\npub mod model;"
+# # Mod.rs Content
+# feature_mod_rs_content = "pub mod application;\npub mod domain;\npub mod infrastructure;\npub mod interface;"
+# application_mod_rs_content = "pub mod di;\npub mod interactor;\npub mod use_case;\npub mod model;\npub mod util;"
+# domain_mod_rs_content = "pub mod entity;\npub mod repository;\npub mod interactor;"
+# infrastructure_mod_rs_content = "pub mod data_access;\npub mod dto;\npub mod enum;\npub mod mapper;\npub mod repository;"
+# interface_mod_rs_content = "pub mod controller;\npub mod model;"
 
-di_mod_rs_content = "pub mod container;"
-interactor_mod_rs_content = ""  
-use_case_mod_rs_content = ""   
-model_mod_rs_content = ""       
-util_mod_rs_content = ""        
-entity_mod_rs_content = ""     
-repository_mod_rs_content = ""   
-data_access_mod_rs_content = ""   
-dto_mod_rs_content = ""        
-enum_mod_rs_content = ""       
-mapper_mod_rs_content = ""      
-controller_mod_rs_content = ""   
+# di_mod_rs_content = "pub mod container;"
+# interactor_mod_rs_content = ""  
+# use_case_mod_rs_content = ""   
+# model_mod_rs_content = ""       
+# util_mod_rs_content = ""        
+# entity_mod_rs_content = ""     
+# repository_mod_rs_content = ""   
+# data_access_mod_rs_content = ""   
+# dto_mod_rs_content = ""        
+# enum_mod_rs_content = ""       
+# mapper_mod_rs_content = ""      
+# controller_mod_rs_content = ""   
