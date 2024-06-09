@@ -30,14 +30,13 @@ fn main() {
 }
 
 fn generate_feature(feature_name: &str) {
-    // 2. Handlebars Setup
+    // 1. Handlebars Setup
     let mut handlebars = Handlebars::new();
 
-    // 3. Register all templates from the config file
+    // 2. Register all templates from the config file
     for file in TEMPLATES_DIR.files() {
         // Iterate over files in the directory
         let name = file.path().file_stem().unwrap().to_str().unwrap();
-        println!("Registering template: {}", name);
         let template_string = file.contents_utf8().unwrap();
 
         handlebars
