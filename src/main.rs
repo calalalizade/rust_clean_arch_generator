@@ -42,7 +42,7 @@ fn main() {
     });
 
     // 4. Create feature folder and subfolders
-    let feature_dir = format!("src/{}", feature_name.to_lowercase().replace("-", "_"));
+    let feature_dir = format!("src/features/{}", feature_name.to_lowercase().replace("-", "_"));
     fs::create_dir_all(&feature_dir).unwrap();
     fs::write(format!("{}/mod.rs", feature_dir), "").unwrap(); // Create mod.rs
 
