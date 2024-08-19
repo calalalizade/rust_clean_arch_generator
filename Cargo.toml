@@ -1,6 +1,6 @@
 [package]
 name = "rustlay"
-version = "0.1.0"
+version = "0.1.1"
 authors = ["Jalal Alizade"] 
 edition = "2021"
 description = "A Rust CLI tool for generating Clean Architecture project boilerplates."

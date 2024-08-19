@@ -1,6 +1,6 @@
 use crate::{
     common::{
-        domain::failure::failure::IFailure,
+        domain::failure::failure::Failure,
         infrastructure::mapper::error_to_failure_mapper::error_to_failure_mapper,
     },
     features::{{feature_name}}::{
@@ -15,15 +15,15 @@ pub struct {{capitalize_feature_name}}RepositoryImpl {
 
 impl {{capitalize_feature_name}}RepositoryImpl {
     pub fn new(
-        {{snake_case_feature_name}}_data_source: Box<{{capitalize_feature_name}}DataSource>
+        {{snake_case_feature_name}}_data_source: {{capitalize_feature_name}}DataSource
     ) -> {{capitalize_feature_name}}RepositoryImpl {
-        {{capitalize_feature_name}}RepositoryImpl { {{snake_case_feature_name}}_data_source: *{{snake_case_feature_name}}_data_source }
+        {{capitalize_feature_name}}RepositoryImpl { {{snake_case_feature_name}}_data_source }
     }
 }
 
 impl I{{capitalize_feature_name}}Repository for {{capitalize_feature_name}}RepositoryImpl {
     // Sign up the user and return the tokens
-    // fn sign_up(&self, entity: CredentialsInfoEntity) -> Result<TokenEntity, Box<dyn IFailure>> {
+    // fn sign_up(&self, entity: CredentialsInfoEntity) -> Result<TokenEntity, Failure> {
     //     let user_result = self.user_auth_data_source.sign_up(
     //         credentials_info_entity_dto_mapper(Box::new(entity))?
     //     );

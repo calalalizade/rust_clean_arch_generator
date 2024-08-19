@@ -1,23 +1,23 @@
 use crate::{
-    common::domain::failure::failure::IFailure,
+    common::domain::failure::failure::Failure,
     features::{
         {{feature_name}}::application::interactor::i_{{snake_case_feature_name}}_interactor::I{{capitalize_feature_name}}Interactor,
         {{feature_name}}::domain::repository::i_{{snake_case_feature_name}}_repository::I{{capitalize_feature_name}}Repository,
     },
 };
 
-pub struct {{capitalize_feature_name}}InteractorImpl {
-    repository: Box<dyn I{{capitalize_feature_name}}Repository>,
+pub struct {{capitalize_feature_name}}InteractorImpl<E: I{{capitalize_feature_name}}Repository> {
+    repository: E,
 }
 
-impl {{capitalize_feature_name}}InteractorImpl {
-    pub fn new(repository: Box<dyn I{{capitalize_feature_name}}Repository>) -> {{capitalize_feature_name}}InteractorImpl {
+impl<E: I{{capitalize_feature_name}}Repository> {{capitalize_feature_name}}InteractorImpl<E> {
+    pub fn new(repository: E) -> {{capitalize_feature_name}}InteractorImpl<E> {
         {{capitalize_feature_name}}InteractorImpl { repository }
     }
 }
 
-impl I{{capitalize_feature_name}}Interactor for {{capitalize_feature_name}}InteractorImpl {
-    // fn sign_up(&self, entity: CredentialsInfoEntity) -> Result<TokenEntity, Box<dyn IFailure>> {
+impl<E: I{{capitalize_feature_name}}Repository> I{{capitalize_feature_name}}Interactor for {{capitalize_feature_name}}InteractorImpl<E> {
+    // fn sign_up(&self, entity: CredentialsInfoEntity) -> Result<TokenEntity, Failure> {
     //     self.repository.sign_up(entity)
     // }
 }
